@@ -1,7 +1,7 @@
 {
-  "name": "bunyan-sfdx",
+  "name": "bunyan-sfdx-no-dtrace",
   "version": "1.8.2",
-  "description": "a JSON logging library for node.js services",
+  "description": "a JSON logging library for node.js services (dtrace is disabled)",
   "author": "Trent Mick <trentm@gmail.com> (http://trentm.com)",
   "main": "./lib/bunyan.js",
   "bin": {
@@ -10,7 +10,7 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/trentm/node-bunyan.git"
+    "url": "git://github.com/cwallsfdc/node-bunyan.git"
   },
   "engines": ["node >=0.10.0"],
   "keywords": ["log", "logging", "log4j", "json", "bunyan"],
