@@ -33,13 +33,13 @@ var expect =
             {
                 'name': 'blammo',
                 'level': 30,
-                'msg': 'bango { bang: \'boom\', KABOOM: [Circular] }',
+                'msg': "bango { bang: 'boom', KABOOM: [Circular] }",
                 'v': 0
             },
             {
                 'name': 'blammo',
                 'level': 30,
-                'msg': 'kaboom { bang: \'boom\', KABOOM: [Circular] }',
+                'msg': "kaboom { bang: 'boom', KABOOM: [Circular] }",
                 'v': 0
             },
             {
