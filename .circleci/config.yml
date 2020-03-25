@@ -1,8 +1,5 @@
 ---
-version: 2.1
-
-orbs:
-  win: circleci/windows@2.2.0
+version: 2
 
 jobs:
   node-latest: &test
@@ -42,31 +39,6 @@ jobs:
             - ~/cli/node_modules
             - /usr/local/share/.cache/yarn
             - /usr/local/share/.config/yarn
-  run-win-tests:
-    description: 'Run tests on Windows'
-    executor: win/default
-    steps:
-      - run: git config --global core.autocrlf false
-      - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-win1-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
-            # if cache for exact version of 'package.json' is not present, then load the most recent cache
-            - dependency-cache-win1-
-      - run:
-          name: 'Install dependencies'
-          command: |
-            yarn --version
-            node --version
-            yarn
-      - save_cache:
-          key: dependency-cache-win1-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
-          paths:
-            - node_modules
-      - run:
-          name: 'Running unit tests'
-          command: |
-            yarn test
 workflows:
   version: 2
   'salesforce-bunyan':
@@ -80,4 +52,3 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - run-win-tests
