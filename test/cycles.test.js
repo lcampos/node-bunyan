@@ -33,13 +33,13 @@ var expect =
             {
                 'name': 'blammo',
                 'level': 30,
-                'msg': "bango { bang: 'boom', KABOOM: [Circular] }",
+                'msg': 'bango { bang: \'boom\', KABOOM: [Circular] }',
                 'v': 0
             },
             {
                 'name': 'blammo',
                 'level': 30,
-                'msg': "kaboom { bang: 'boom', KABOOM: [Circular] }",
+                'msg': 'kaboom { bang: \'boom\', KABOOM: [Circular] }',
                 'v': 0
             },
             {
@@ -74,7 +74,7 @@ test('cycles', function (t) {
             delete o.pid;
             delete o.time;
             // Hack object/dict comparison: JSONify.
-            t.equal(JSON.stringify(o), JSON.stringify(expect[i]),
+            t.equal(JSON.stringify(o).replace(/\s<ref \*1>/gi, ''), JSON.stringify(expect[i]),
                 'log item ' + i + ' matches');
         });
         t.end();
