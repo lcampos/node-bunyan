@@ -18,9 +18,6 @@
   "engines": {
     "node": ">=10.5.0"
   },
-  "engines": [
-    "node >=0.10.0"
-  ],
   "keywords": [
     "log",
     "logging",
@@ -33,7 +30,6 @@
   "// mv": "required for RotatingFileStream",
   "// moment": "required for local time with CLI",
   "optionalDependencies": {
-    "dayjs": "^1.8.16",
     "dtrace-provider": "~0.6",
     "mv": "~2",
     "safe-json-stringify": "~1"
@@ -49,6 +45,7 @@
     "test": "make test"
   },
   "dependencies": {
+    "dayjs": "^1.8.16",
     "dayjs-plugin-utc": "^0.1.2"
   }
 }
