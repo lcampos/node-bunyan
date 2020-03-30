@@ -15,7 +15,6 @@ var VERSION = '1.8.2';
 
 var p = console.log;
 var util = require('util');
-var pathlib = require('path');
 var vm = require('vm');
 var http = require('http');
 var fs = require('fs');
@@ -27,7 +26,9 @@ var child_process = require('child_process'),
 var assert = require('assert');
 
 try {
-    var moment = require('moment');
+    var moment = require('dayjs');
+    var utc = require('dayjs/plugin/utc');
+    moment.extend(utc);
 } catch (e) {
     moment = null;
 }
@@ -97,7 +98,7 @@ var TIMEZONE_UTC_FORMATS = {
     short: 'HH:mm:ss.SSS[Z]'
 };
 var TIMEZONE_LOCAL_FORMATS = {
-    long:  '[[]YYYY-MM-DD[T]HH:mm:ss.SSSZ[]]',
+    long:  '[[]YYYY-MM-DD[T]HH:mm:ss.SSSZ]',
     short: 'HH:mm:ss.SSS'
 };
 
@@ -795,7 +796,15 @@ function emitRecord(rec, line, opts, stylize) {
             default:
                 throw new Error('unexpected timeFormat: ' + opts.timeFormat);
             };
-            time = moTime.format(tzFormat);
+            
+            if (process.env.TZ && opts.timeFormat === TIME_UTC) {
+                var darr = rec.time.split('.');
+                var dat=new Date(darr[0]);
+                dat.setMilliseconds(darr[1].replace('Z',''));
+                time = moment(dat).format(tzFormat, { timeZone: process.env.TZ});
+            } else {
+                time = moTime.format(tzFormat);
+            }
         }
         time = stylize(time, 'XXX');
         delete rec.time;
