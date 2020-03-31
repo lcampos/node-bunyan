@@ -48,16 +48,6 @@ shell.exec('git clean -xfd -e node_modules');
 console.log('\nInstall dependencies');
 shell.exec('yarn install');
 
-// Bump version
-console.log(`\nBump version to ${LIB_VERSION}`);
-shell.exec(`yarn version --new-version ${LIB_VERSION} --no-git-tag-version`);
-
-console.log('\nGit add package.json');
-shell.exec(`git add package.json`);
-
-console.log('\nRunning commit.');
-shell.exec(`git commit -m "Updated version"`);
-
 const gitTagName = `v${LIB_VERSION}`;
 console.log(`\nCreating the git tag (e.g. v1.1.0): ${gitTagName}`);
 shell.exec(`git tag ${gitTagName}`);
@@ -67,6 +57,3 @@ shell.exec(`git push origin ${gitTagName}`);
 
 console.log('\nPublishing to npm');
 shell.exec(`yarn publish --new-version ${LIB_VERSION}`);
-
-console.log('\nPush release changes to repository');
-shell.exec('git push');
