@@ -1,7 +1,18 @@
+# Folders
+/.circleci
+/.vscode
 /tmp
 /node_modules
-*.log
 /examples
 /test
-/*.tgz
 /tools
+/docs
+/scripts
+
+# Files
+*.log
+*.tgz
+TODO.md
+CONTRIBUTING.md
+AUTHORS
+
